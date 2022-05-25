@@ -1,0 +1,45 @@
+22:45:59 **** Incremental Build of configuration Debug for project Competency ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'MX_ADC1_Init':
+../Core/Src/main.c:233:36: error: 'ADC_CHANEL_TEMPSENSOR' undeclared (first use in this function); did you mean 'ADC_CHANNEL_TEMPSENSOR'?
+  233 |     ADCChannel[0].Config.Channel = ADC_CHANEL_TEMPSENSOR;
+      |                                    ^~~~~~~~~~~~~~~~~~~~~
+      |                                    ADC_CHANNEL_TEMPSENSOR
+../Core/Src/main.c:233:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:234:25: error: 'ADC_ChannelConfTypeDef' has no member named 'rank'; did you mean 'Rank'?
+  234 |    ADCChannel[0].Config.rank = 1;
+      |                         ^~~~
+      |                         Rank
+../Core/Src/main.c: In function 'ADCTemperature':
+../Core/Src/main.c:346:43: error: '(ADCStructure *)&ADCChannel' is a pointer; did you mean to use '->'?
+  346 |  HAL_ADC_ConfigChannel(&hadc1, &ADCChannel.sConfig);
+      |                                           ^
+      |                                           ->
+../Core/Src/main.c:352:12: error: '(ADCStructure *)&ADCChannel' is a pointer; did you mean to use '->'?
+  352 |  ADCChannel.data = HAL_ADC_Getvalue(&hadc1);
+      |            ^
+      |            ->
+../Core/Src/main.c:352:20: warning: implicit declaration of function 'HAL_ADC_Getvalue'; did you mean 'HAL_ADC_GetValue'? [-Wimplicit-function-declaration]
+  352 |  ADCChannel.data = HAL_ADC_Getvalue(&hadc1);
+      |                    ^~~~~~~~~~~~~~~~
+      |                    HAL_ADC_GetValue
+../Core/Src/main.c: In function 'UARTRecieveAndResponsePolling':
+../Core/Src/main.c:319:27: warning: '%s' directive writing up to 31 bytes into a region of size 22 [-Wformat-overflow=]
+  319 |  sprintf(var1, "Received:[%s]\r\n", Recieve);
+      |                           ^~        ~~~~~~~
+../Core/Src/main.c:319:2: note: 'sprintf' output between 14 and 45 bytes into a destination of size 32
+  319 |  sprintf(var1, "Received:[%s]\r\n", Recieve);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:339:27: warning: '%s' directive writing up to 31 bytes into a region of size 22 [-Wformat-overflow=]
+  339 |  sprintf(var1, "Received:[%s]\r\n", var2);
+      |                           ^~        ~~~~
+../Core/Src/main.c:339:2: note: 'sprintf' output between 14 and 45 bytes into a destination of size 32
+  339 |  sprintf(var1, "Received:[%s]\r\n", var2);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+
+22:45:59 Build Failed. 5 errors, 3 warnings. (took 299ms)
+
