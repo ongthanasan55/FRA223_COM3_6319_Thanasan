@@ -50,6 +50,7 @@ typedef struct
 	uint16_t data;
 }ADCStructure;
 ADCStructure ADCChannel;
+ADCStructure count[100];
 float temp;
 
 
@@ -76,6 +77,10 @@ void ADCConfigTnit();
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	for(i = 0 ,i<100,i++)
+	{
+		int *count[i] = (HAL_ADC_GetValue(&hadc1),1000);
+	}
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -286,7 +291,6 @@ void ADCConfigTnit()
 	ADCChannel.Config.Channel = ADC_CHANNEL_TEMPSENSOR;
 	ADCChannel.Config.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	ADCChannel.Config.Rank = 1;
-
 }
 void ADCTem()
 {

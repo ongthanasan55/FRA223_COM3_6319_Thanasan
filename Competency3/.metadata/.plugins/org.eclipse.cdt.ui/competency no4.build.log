@@ -1,13 +1,17 @@
-04:22:39 **** Incremental Build of configuration Debug for project competency no4 ****
+11:22:06 **** Incremental Build of configuration Debug for project competency no4 ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'Count':
-../Core/Src/main.c:287:3: error: 'ptr' undeclared (first use in this function)
-  287 |  *ptr = HAL_ADC_GetValue(&hadc1);
-      |   ^~~
-../Core/Src/main.c:287:3: note: each undeclared identifier is reported only once for each function it appears in
-make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-gcc -o "competency no4.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\git\FRA222_COM3_6319_Thanasan\Competency3\competency no4\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="competency no4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: competency no4.elf
+ 
+arm-none-eabi-size   competency\ no4.elf 
+arm-none-eabi-objdump -h -S  competency\ no4.elf  > "competency no4.list"
+   text	   data	    bss	    dec	    hex	filename
+  10820	     20	   1732	  12572	   311c	competency no4.elf
+Finished building: default.size.stdout
+ 
+Finished building: competency no4.list
+ 
 
-04:22:40 Build Failed. 2 errors, 0 warnings. (took 298ms)
+11:22:07 Build Finished. 0 errors, 0 warnings. (took 612ms)
 

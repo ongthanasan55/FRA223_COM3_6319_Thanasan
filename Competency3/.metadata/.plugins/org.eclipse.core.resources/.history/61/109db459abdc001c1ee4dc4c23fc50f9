@@ -50,6 +50,7 @@ typedef struct
 	uint16_t data;
 }ADCStructure;
 ADCStructure ADCChannel;
+ADCStructure count[100];
 float temp;
 
 
@@ -286,7 +287,8 @@ void ADCConfigTnit()
 	ADCChannel.Config.Channel = ADC_CHANNEL_TEMPSENSOR;
 	ADCChannel.Config.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	ADCChannel.Config.Rank = 1;
-
+	count.Config.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+	count.Config.Rank = 1;
 }
 void ADCTem()
 {
