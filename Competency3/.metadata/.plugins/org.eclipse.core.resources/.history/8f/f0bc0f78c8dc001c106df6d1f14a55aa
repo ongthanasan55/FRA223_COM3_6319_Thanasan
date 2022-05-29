@@ -50,7 +50,8 @@ typedef struct
 	uint16_t data;
 }ADCStructure;
 ADCStructure ADCChannel;
-ADCStructure ADCChannel1[100];
+float temp;
+
 
 /* USER CODE END PV */
 
@@ -66,7 +67,6 @@ void ADCConfigTnit();
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /**
@@ -76,7 +76,6 @@ void ADCConfigTnit();
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -111,6 +110,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  ADCTem();
+
   }
   /* USER CODE END 3 */
 }
@@ -280,29 +280,24 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
 void ADCConfigTnit()
 {
 	ADCChannel.Config.Channel = ADC_CHANNEL_TEMPSENSOR;
 	ADCChannel.Config.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	ADCChannel.Config.Rank = 1;
+
 }
 void ADCTem()
 {
-	for (int i=0; i<1 ;i++)
-	{
 	  HAL_ADC_ConfigChannel(&hadc1, &ADCChannel.Config);
 	  HAL_ADC_Start(&hadc1);
 	  if(HAL_ADC_PollForConversion(&hadc1, 1000)== HAL_OK)
 	  {
-	     ADCChannel.data = HAL_ADC_GetValue(&hadc1);
+	     temp = (ADCChannel.data = HAL_ADC_GetValue(&hadc1))*330/1023;
 	  }
 	  else
 	  HAL_ADC_Stop(&hadc1);
-    }
-	for (int i=0; i<100 ;i++)
-	{
-		int *ADCChannel1 = ADCChannel[i].data;
-	}
 
 }
 /* USER CODE END 4 */
